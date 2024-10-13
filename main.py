@@ -125,3 +125,12 @@ async def reset_password(resetPassword: resetPassword):
             raise HTTPException(status_code=404, detail="Usuario not found") 
     except Exception as e: 
         raise HTTPException(status_code=500, detail=str(e))
+    
+# Get all users
+@app.get("/users")
+async def get_users():
+    try:
+        users = keycloak_admin.get_users()
+        return users
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
